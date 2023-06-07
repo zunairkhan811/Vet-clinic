@@ -4,3 +4,5 @@ CREATE TABLE animals (
    id int PRIMARY KEY NOT NULL, name varchar(40)
 NOT NULL, date_of_birth date,escape_attempts int, neutered boolean, weight_kg decimal;
 );
+
+ALTER TABLE ANIMALS ADD COLUMN species varchar(40) ;
