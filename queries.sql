@@ -38,6 +38,50 @@ select MAX(escape_attempts) from animals GROUP BY neutered ;
 select MIN(weight_kg),MAX(weight_kg) from animals GROUP BY species ;
 select species, AVG(escape_attempts) from animals where date_of_birth>'1990-01-01' AND date_of_birth<'2000-01-01' GROUP BY species ;
 
+-- More queries
+
+select animals.name,owners.full_name
+from animals join owners
+on animals.owner_id = owners.id
+where full_name = 'Melody Pond';
+
+select animals.name,species.name
+from animals join species
+on animals.species_id = species.id
+where species_id = 1;
+
+SELECT animals.name,owners.full_name
+from animals Right join owners 
+on animals.owner_id = owners.id;
+
+select count(*),species.name
+from animals join species
+on animals.species_id = species.id
+group by species.id ;
+
+select animals.name,species.name,
+owners.full_name
+from animals join species
+on animals.species_id = species.id
+join owners on animals.owner_id = owners.id
+where species.name = 'Digimon' And 
+owners.full_name = 'Jennifer Orwell';
+
+select animals.name,animals.escape_attempts,
+owners.full_name
+from animals join owners 
+on animals.owner_id = owners.id
+where animals.escape_attempts = 0 And
+owners.full_name = 'Dean Winchester';
+
+select owners.full_name,
+count(animals.name) as total				 
+from animals join owners 
+on animals.owner_id = owners.id
+group by owners.full_name
+order by total desc 
+limit 1 ;
+
 
 
 
