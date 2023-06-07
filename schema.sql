@@ -4,5 +4,36 @@ CREATE TABLE animals (
    id int PRIMARY KEY NOT NULL, name varchar(40)
 NOT NULL, date_of_birth date,escape_attempts int, neutered boolean, weight_kg decimal;
 );
-
 ALTER TABLE ANIMALS ADD COLUMN species varchar(40) ;
+
+CREATE TABLE owners (
+   id serial PRIMARY KEY, full_name varchar(40),age int
+);
+create table species(
+id serial primary key,name varchar(40)
+);
+
+ALTER TABLE animals
+DROP COLUMN id;
+select * from animals ;
+
+ALTER TABLE animals
+ADD COLUMN id SERIAL PRIMARY KEY ;
+select * from animals ;
+
+alter table animals
+drop column species ;
+
+alter table animals
+add column species_id INT ;
+alter table animals
+add constraint species_id
+FOREIGN KEY(species_id) REFERENCES species(id);
+
+alter table animals
+add column owner_id INT ;
+alter table animals
+add constraint owner_id
+FOREIGN KEY(owner_id) REFERENCES owners(id);
+
+
