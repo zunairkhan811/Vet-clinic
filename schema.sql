@@ -36,4 +36,30 @@ alter table animals
 add constraint owner_id
 FOREIGN KEY(owner_id) REFERENCES owners(id);
 
+create table vets(
+   id serial primary key,
+   name varchar(40),
+   age int,
+   date_of_graduation date
+)
+
+create table specializations(
+   id serial primary key,
+   species_id int references species(id),
+   vets_id int references vets(id)
+)
+
+create table visits(
+   id serial primary key,
+   animals_id int references animals(id),
+   vets_id int references vets(id),
+   visit_date date
+)
+
+select * from animals;
+select * from species;
+select * from owners;
+select * from vets;
+select * from specializations;
+
 
