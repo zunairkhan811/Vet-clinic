@@ -68,6 +68,7 @@ ALTER TABLE owners ADD COLUMN email VARCHAR(120);
 
 CREATE INDEX visits_animal_id_idx ON visits (animals_id);
 CREATE INDEX visits_vet_id_idx on visits (vets_id DESC);
-explain analyze SELECT COUNT(*) FROM visits where animals_id = 4;
+
+CREATE INDEX owners_indexes ON owners(email DESC);
 
 
