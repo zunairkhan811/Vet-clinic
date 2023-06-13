@@ -62,4 +62,13 @@ select * from owners;
 select * from vets;
 select * from specializations;
 
+--performance and audit
+
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+CREATE INDEX visits_animal_id_idx ON visits (animals_id);
+CREATE INDEX visits_vet_id_idx on visits (vets_id DESC);
+
+CREATE INDEX owners_indexes ON owners(email DESC);
+
 

@@ -135,5 +135,18 @@ values ((select id from vets where name = 'William Tatcher'),
 (select id from animals where name = 'Blossom'),('2021-01-11'));
 select * from visits;
 
+--performance and audit
+
+INSERT INTO visits (animals_id, vets_id,visit_date) 
+SELECT * FROM (SELECT id FROM animals) animal_ids,
+(SELECT id FROM vets) vets_ids, 
+generate_series('1980-01-01'::timestamp,
+'3021-01-01', '4 hours') visit_timestamp; --Repeat the process until execution time
+-- greater than 1000ms
+
+insert into owners (full_name, email) 
+select 'Owner ' || generate_series(1,2500000),
+'owner_' || generate_series(1,2500000) || '@mail.com'; --Repeat the process until execution
+-- time becomes greater than 1000ms
 
 
